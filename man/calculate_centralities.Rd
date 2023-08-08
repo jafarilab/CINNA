@@ -13,22 +13,25 @@ calculate_centralities(x, except = NULL, include = NULL, weights = NULL)
 
 \item{include}{A vector including names of centrality measures which should be computed.}
 
-\item{weights}{A character scalar specifying the edge attribute to use.(default=NULL)}
+\item{weights}{A character scalar specifying the edge attribute to use. (default=NULL)}
 }
 \value{
-A list concluding centrality measure values in which the columns indicate centralities
-and the rows show the vertices.
+A list containing centrality measure values. Each column indicates a centrality measure, and each row corresponds to a vertex.
+        The structure of the output is as follows:
+        - The list has named elements, where each element represents a centrality measure.
+        - The value of each element is a numeric vector, where each element of the vector corresponds to a vertex in the network.
+        - The order of vertices in the numeric vectors matches the order of vertices in the input igraph object.
+        - The class of the output is "centrality".
 }
 \description{
 This function computes multitude centrality measures of an igraph object.
 }
 \details{
 This function calculates various types of centrality measures which are applicable to the network topology
-and returns the results as a list. In "except" argument, you can specify centrality measures which is
+and returns the results as a list. In the "except" argument, you can specify centrality measures that are
 not necessary to calculate.
 }
 \examples{
-
 data("zachary")
 p <- proper_centralities(zachary)
 calculate_centralities(zachary, include = "Degree Centrality")
@@ -143,27 +146,47 @@ Viswanath, M. (2009). ONTOLOGY BASED AUTOMATIC TEXT SUMMARIZATION. Vishweshwarai
 Przulj, N., Wigle, D. A., & Jurisica, I. (2004). Functional topology in a network of protein interactions. Bioinformatics, 20(3), 340–348.
 
 del Rio, G., Koschtzki, D., & Coello, G. (2009). How to identify essential genes from molecular networks BMC Systems Biology, 3(1), 102.
+
+Scardoni, G. and Carlo Laudanna, C.B.M.C., 2011. Network centralities for Cytoscape. University of Verona.
+
+BOLDI, P. & VIGNA, S. 2014. Axioms for centrality. Internet Mathematics, 00-00.
+
+MARCHIORI, M. & LATORA, V. 2000. Harmony in the small-world. Physica A: Statistical Mechanics and its Applications, 285, 539-546.
+
+OPSAHL, T., AGNEESSENS, F. & SKVORETZ, J. 2010. Node centrality in weighted networks: Generalizing degree and shortest paths. Social Networks, 32, 245-251.
+
+OPSAHL, T. 2010. Closeness centrality in networks with disconnected components (http://toreopsahl.com/2010/03/20/closeness-centrality-in-networks-with-disconnected-components/)
+
+Michalak, T.P., Aadithya, K.V., Szczepanski, P.L., Ravindran, B. and Jennings, N.R., 2013. Efficient computation of the Shapley value for game-theoretic network centrality. Journal of Artificial Intelligence Research, 46, pp.607-650.
+
+Macker, J.P., 2016, November. An improved local bridging centrality model for distributed network analytics. In Military Communications Conference, MILCOM 2016-2016 IEEE (pp. 600-605). IEEE. DOI: 10.1109/MILCOM.2016.7795393
+
+DANGALCHEV, C. 2006. Residual closeness in networks. Physica A: Statistical Mechanics and its Applications, 365, 556-564. DOI: 10.1016/j.physa.2005.12.020
+
+Alain Barrat, Marc Barthelemy, Romualdo Pastor-Satorras, Alessandro Vespignani: The architecture of complex weighted networks, Proc. Natl. Acad. Sci. USA 101, 3747 (2004)
 }
 \seealso{
-\code{ \link[igraph]{alpha.centrality}},\code{ \link[igraph]{bonpow}},\code{ \link[igraph]{constraint}},
-\code{ \link[igraph]{centr_degree}},\code{ \link[igraph]{eccentricity}},\code{ \link[igraph]{eigen_centrality}},
-\code{ \link[igraph]{coreness}},\code{ \link[igraph]{authority_score}},\code{ \link[igraph]{hub_score}},
-\code{ \link[igraph]{transitivity}},\code{ \link[igraph]{page_rank}},\code{ \link[igraph]{betweenness}} ,
-\code{ \link[igraph]{subgraph.centrality}}, \code{ \link[sna]{flowbet}},\code{ \link[sna]{infocent}},
-\code{ \link[sna]{loadcent}},\code{ \link[sna]{stresscent}}, \code{ \link[centiserve]{topocoefficient}},
-\code{ \link[centiserve]{closeness.currentflow}},\code{ \link[centiserve]{closeness.latora}},
-\code{ \link[centiserve]{communibet}}, \code{ \link[centiserve]{communitycent}},
-\code{ \link[centiserve]{crossclique}},\code{ \link[centiserve]{entropy}},
-\code{ \link[centiserve]{epc}},\code{ \link[centiserve]{laplacian}},\code{ \link[centiserve]{leverage}},
-\code{ \link[centiserve]{mnc}},\code{ \link[centiserve]{hubbell}}, \code{ \link[centiserve]{semilocal}},
-\code{ \link[centiserve]{closeness.vitality}},
-\code{ \link[centiserve]{closeness.residual}},\code{ \link[centiserve]{lobby}},
-\code{ \link[centiserve]{markovcent}},\code{ \link[centiserve]{radiality}},\code{ \link[centiserve]{lincent}},
-\code{ \link[centiserve]{geokpath}}, \code{ \link[centiserve]{katzcent}},\code{ \link[centiserve]{diffusion.degree}},
-\code{ \link[centiserve]{dmnc}},\code{ \link[centiserve]{centroid}},\code{ \link[centiserve]{closeness.freeman}},
-\code{ \link[centiserve]{clusterrank}},\code{ \link[centiserve]{decay}},
-\code{ \link[centiserve]{barycenter}},\code{ \link[centiserve]{bottleneck}},\code{ \link[centiserve]{averagedis}}
+\code{\link[igraph]{alpha.centrality}}, \code{\link[igraph]{bonpow}}, \code{\link[igraph]{constraint}},
+  \code{\link[igraph]{centr_degree}}, \code{\link[igraph]{eccentricity}}, \code{\link[igraph]{eigen_centrality}},
+  \code{\link[igraph]{coreness}}, \code{\link[igraph]{authority_score}}, \code{\link[igraph]{hub_score}},
+  \code{\link[igraph]{transitivity}}, \code{\link[igraph]{page_rank}}, \code{\link[igraph]{betweenness}},
+  \code{\link[igraph]{subgraph.centrality}}, \code{\link[sna]{flowbet}}, \code{\link[sna]{infocent}},
+  \code{\link[sna]{loadcent}}, \code{\link[sna]{stresscent}}, \code{\link[sna]{graphcent}}, \code{\link[centiserve]{topocoefficient}},
+  \code{\link[centiserve]{closeness.currentflow}}, \code{\link[centiserve]{closeness.latora}},
+  \code{\link[centiserve]{communibet}}, \code{\link[centiserve]{communitycent}},
+  \code{\link[centiserve]{crossclique}}, \code{\link[centiserve]{entropy}},
+  \code{\link[centiserve]{epc}}, \code{\link[centiserve]{laplacian}}, \code{\link[centiserve]{leverage}},
+  \code{\link[centiserve]{mnc}}, \code{\link[centiserve]{hubbell}}, \code{\link[centiserve]{semilocal}},
+  \code{\link[centiserve]{closeness.vitality}},
+  \code{\link[centiserve]{closeness.residual}}, \code{\link[centiserve]{lobby}},
+  \code{\link[centiserve]{markovcent}}, \code{\link[centiserve]{radiality}}, \code{\link[centiserve]{lincent}},
+  \code{\link[centiserve]{geokpath}}, \code{\link[centiserve]{katzcent}}, \code{\link[centiserve]{diffusion.degree}},
+  \code{\link[centiserve]{dmnc}}, \code{\link[centiserve]{centroid}}, \code{\link[centiserve]{closeness.freeman}},
+  \code{\link[centiserve]{clusterrank}}, \code{\link[centiserve]{decay}},
+  \code{\link[centiserve]{barycenter}}, \code{\link[centiserve]{bottleneck}}, \code{\link[centiserve]{averagedis}},
+  \code{\link[CINNA]{local_bridging_centrality}}, \code{\link[CINNA]{wiener_index_centrality}}, \code{\link[CINNA]{group_centrality}},
+  \code{\link[CINNA]{dangalchev_closeness_centrality}}, \code{\link[CINNA]{harmonic_centrality}}, \code{\link[igraph]{strength}}
 }
 \author{
-Minoo Ashtiani, Mohieddin Jafari
+Minoo Ashtiani, Mehdi Mirzaie, Mohieddin Jafari
 }
